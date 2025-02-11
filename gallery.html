@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>profile minecraft</title>
+    <link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 15px 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            padding: 8px 12px;
+            display: block;
+        }
+
+        .nav-links a:hover {
+            color: #000;
+            transform: scale(1.05);
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: black;
+            padding: 10px 15px;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+
+        .nav-links a.active {
+            color: rgb(0, 0, 0);
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            border: 1px solid;
+            border-radius: 5px;
+        }
+
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            padding: 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .gallery-item {
+            background: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .gallery h3 {
+            margin: 10px 0 5px;
+            font-size: 18px;
+        }
+
+        .gallery p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                background: white;
+                width: 100%;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .navbar h1 {
+                font-size: 25px;
+            }
+        }
+
+        .img {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .img img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #clock {
+            display: inline;
+        }
+    </style>
+    <script>
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="img">
+            <a href="file:///C:/Users/RIDO%20ALPIANSAH%20DESU/Downloads/bt/logo.png" target="_blank"><img
+                    src="img/logo.png" alt=""></a>
+            <h1 class="text-3xl font-bold" style="display: inline-block;">MY <span
+                    style="font-family: 'Minecraft', sans-serif; color: #505050;">MINECRAFT</span> PAGE</h1>
+        </div>
+
+        <button class="menu-btn" onclick="toggleMenu()">☰</button>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="#" class="active">Gallery</a>
+        </div>
+    </nav>
+    <header>
+        <center>
+            <span style="font-family: 'Minecraft', sans-serif; color:black; font-size:40px;">
+                GALLERY
+            </span>
+        </center>
+    </header>
+
+    <div class="gallery">
+        <div class="gallery-item">
+            <img src="../img/Screenshot (27).png" alt="Image 1">
+            <h3>"I found a beautiful place. and beautiful girl"</h3>
+            <p>
+                Hai... ini adalah pertama kalinya aku menemukan tempat yang sesuai menurutku
+                dan aku berencana untuk membangun rumah di sekitaran sini. aku menemukan tempat ini
+                bersama orang yang sebelumnya aku tidak kenal dia bernama clara atasya..
+            </p>
+            <button class="btn">
+                <a href="https://launch.minecraft.net/profile/YOWCHILLDUDE" target="_blank">Lihat Profil</a>
+              </button>
+        </div>
+        <div class="gallery-item">
+            <img src="../img/Screenshot (30).png" alt="Image 2">
+            <h3>Judul Foto 2</h3>
+            <p>Deskripsi singkat tentang foto 2.</p>
+        </div>
+        <div class="gallery-item">
+            <img src="../img/Screenshot (102).png" alt="Image 3">
+            <h3>Judul Foto 3</h3>
+            <p>Deskripsi singkat tentang foto 3.</p>
+        </div>
+        <div class="gallery-item">
+            <img src="../img/Screenshot (81).png" alt="Image 4">
+            <h3>Judul Foto 4</h3>
+            <p>Deskripsi singkat tentang foto 4.</p>
+        </div>
+        <div class="gallery-item">
+            <img src="img5.jpg" alt="Image 5">
+            <h3>Judul Foto 5</h3>
+            <p>Deskripsi singkat tentang foto 5.</p>
+        </div>
+        <div class="gallery-item">
+            <img src="img6.jpg" alt="Image 6">
+            <h3>Judul Foto 6</h3>
+            <p>Deskripsi singkat tentang foto 6.</p>
+        </div>
+    </div>
+
+
+    <script>
+        function updateClock() {
+            let now = new Date();
+            let hours = now.getHours().toString().padStart(2, '0');
+            let minutes = now.getMinutes().toString().padStart(2, '0');
+            let seconds = now.getSeconds().toString().padStart(2, '0');
+            document.getElementById("clock").innerText = hours + ":" + minutes + ":" + seconds;
+        }
+
+        setInterval(updateClock, 1000); // Perbarui setiap 1 detik
+        updateClock(); // Panggil langsung saat halaman dimuat
+
+    </script>
+</body>
+
+</html>
