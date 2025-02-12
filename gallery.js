@@ -71,3 +71,17 @@ function updateClock() {
 
 setInterval(updateClock, 1000); // Perbarui setiap 1 detik
 updateClock(); // Panggil langsung saat halaman dimuat
+
+ function updateCounts() {
+            let likeCount = document.querySelector(".like-count");
+            let viewCount = document.querySelector(".view-count");
+            
+            let currentLikes = parseInt(likeCount.textContent);
+            let currentViews = parseInt(viewCount.textContent.replace('.', ''));
+            
+            // Tambahkan angka acak ke like dan view
+            likeCount.textContent = currentLikes + Math.floor(Math.random() * 3); 
+            viewCount.textContent = (currentViews + Math.floor(Math.random() * 10)).toLocaleString('id-ID');
+        }
+        
+        setInterval(updateCounts, 2000); // Perbarui setiap 2 detik
