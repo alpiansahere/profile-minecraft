@@ -1,3 +1,7 @@
+document.addEventListener("DOMContentLoaded", function () {
+  loadComments();
+});
+
 function addComment(button) {
   let container = button.closest(".gallery-item");
   let input = container.querySelector(".comment-input");
@@ -5,39 +9,45 @@ function addComment(button) {
   let imageId = container.getAttribute("data-id");
 
   if (input.value.trim() !== "") {
-    let newComment = document.createElement("p");
-    newComment.textContent = input.value;
-    commentSection.appendChild(newComment);
+    let commentText = input.value;
+    input.value = ""; // Kosongkan input setelah dikirim
 
-    saveComment(imageId, input.value);
-    input.value = "";
+    // Simpan komentar ke database menggunakan AJAX
+    fetch("save_comment.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: `image_id=${imageId}&comment=${encodeURIComponent(commentText)}`,
+    })
+      .then((response) => response.text())
+      .then((data) => {
+        console.log("Response:", data);
+        loadComments(); // Reload komentar setelah menambah
+      })
+      .catch((error) => console.error("Error:", error));
   }
 }
 
-// Simpan komentar ke localStorage
-function saveComment(imageId, comment) {
-  let comments = JSON.parse(localStorage.getItem("comments_" + imageId)) || [];
-  comments.push(comment);
-  localStorage.setItem("comments_" + imageId, JSON.stringify(comments));
-}
-
-// Ambil komentar dari localStorage saat halaman dimuat
 function loadComments() {
   document.querySelectorAll(".gallery-item").forEach((container) => {
     let imageId = container.getAttribute("data-id");
     let commentSection = container.querySelector(".comments");
-    let comments =
-      JSON.parse(localStorage.getItem("comments_" + imageId)) || [];
 
-    comments.forEach((comment) => {
-      let newComment = document.createElement("p");
-      newComment.textContent = comment;
-      commentSection.appendChild(newComment);
-    });
+    fetch(`get_comments.php?image_id=${imageId}`)
+      .then((response) => response.json())
+      .then((comments) => {
+        commentSection.innerHTML = "";
+        comments.forEach((comment) => {
+          let newComment = document.createElement("p");
+          newComment.textContent = comment.comment;
+          commentSection.appendChild(newComment);
+        });
+      })
+      .catch((error) => console.error("Error fetching comments:", error));
   });
 }
 
-// Fungsi untuk menampilkan atau menyembunyikan komentar
 function toggleComments(button) {
   let container = button.closest(".gallery-item");
   let commentSection = container.querySelector(".comments");
@@ -49,44 +59,4 @@ function toggleComments(button) {
     commentSection.style.display = "none";
     button.textContent = "View Comment";
   }
-}
-
-// Panggil loadComments() saat halaman dimuat
-window.onload = loadComments;
-
-function likeImage(button) {
-  let likeCountElement = button.querySelector(".like-count");
-  let currentLikes = parseInt(likeCountElement.innerText);
-
-  // Tambah jumlah like
-  likeCountElement.innerText = currentLikes + 1;
-
-  // Opsional: Ubah warna tombol saat di-like
-  button.style.color = "red";
-  button.style.fontWeight = "bold";
-  button.disabled = true; // Jika ingin hanya bisa like sekali
-}
-
-function addComment(button) {
-  let commentBox = button.previousElementSibling; // Ambil input komentar
-  let commentText = commentBox.value.trim(); // Ambil teks komentar
-
-  if (commentText === "") return; // Jangan lanjut jika kosong
-
-  let commentsContainer = button
-    .closest(".gallery-item")
-    .querySelector(".comments");
-
-  // Buat elemen komentar
-  let commentDiv = document.createElement("div");
-  commentDiv.classList.add("comment");
-  commentDiv.innerHTML = `
-        <span>${commentText}</span> 
-        <button class="delete-btn" onclick="deleteComment(this)">🗑 Hapus</button>
-    `;
-
-  commentsContainer.appendChild(commentDiv);
-  commentsContainer.style.display = "block"; // Tampilkan komentar
-
-  commentBox.value = ""; // Kosongkan input setelah dikirim
 }
